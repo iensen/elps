@@ -239,16 +239,16 @@ public class Translator {
 				throw new ParseException(warningStrings.toString());
 			}
 		}
-      //  System.out.println("Subjective M Literals");
-      //  for(ASTextendedNonRelAtom at:subjM)  {
-      //  	System.out.println(at.toString());
-     //   }
+        System.out.println("Subjective M Literals");
+        for(ASTextendedNonRelAtom at:subjM)  {
+        	System.out.println(at.toString());
+        }
         
-   //     System.out.println("Subjective K Literals");
-   //     for(ASTextendedNonRelAtom at:subjK)  {
-   //     	System.out.println(at.toString());
-   //     }
-   //     
+        System.out.println("Subjective K Literals");
+        for(ASTextendedNonRelAtom at:subjK)  {
+        	System.out.println(at.toString());
+        }
+        
         
 		
 		TermFetcher tf = new TermFetcher(predicateArgumentSorts);
@@ -356,7 +356,7 @@ public class Translator {
 		 			appendNewLineToTranslation();
 		 			
 		 			// m_lprime :- m0_lprime, not not l.
-		 			translatedOutput.append("m_"+strippedSubj+":-" +"m0_"+strippedSubj+", not not "+getOriginalLit(strippedSubj));
+		 			translatedOutput.append("m_"+strippedSubj+":-" +"m0_"+strippedSubj+", not not"+getOriginalLit(strippedSubj));
 		 			translatedOutput.append(".");
 		 			appendNewLineToTranslation(); 		
 		 			
@@ -373,9 +373,9 @@ public class Translator {
 	 */
     private String stripLiteral(String literalStr) {
     	int kInd = literalStr.indexOf("k_");
-    	if(kInd != -1 && (kInd==0 || !Character.isLetter(literalStr.charAt(kInd-1))
+    	if(kInd != -1 && kInd>0 && !Character.isLetter(literalStr.charAt(kInd-1))
     			&& !Character.isDigit(literalStr.charAt(kInd-1))
-    			&& literalStr.charAt(kInd-1) != '_')) {
+    			&& literalStr.charAt(kInd-1) != '_') {
     		return literalStr.substring(kInd+2);
     	}
     	

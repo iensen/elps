@@ -356,7 +356,7 @@ public class Translator {
 		 			appendNewLineToTranslation();
 		 			
 		 			// m_lprime :- m0_lprime, not not l.
-		 			translatedOutput.append("m_"+strippedSubj+":-" +"m0_"+strippedSubj+", not not "+getOriginalLit(strippedSubj));
+		 			translatedOutput.append("m_"+strippedSubj+":-" +"m0_"+strippedSubj+", not not"+getOriginalLit(strippedSubj));
 		 			translatedOutput.append(".");
 		 			appendNewLineToTranslation(); 		
 		 			

@@ -94,6 +94,7 @@ public static void main(String [] args)
     String inputFile = args[0];
     String outputFile = createOutputFile(inputFile);
     Writer out = null;
+    Settings.getSingletonInstance().setSolver(ASPSolver.Clingo);
     if (new File(outputFile).exists() && !new File(outputFile).isDirectory())
       {
         System.err.println("the output file already exists , do you want to overwrite it? y/n:");

@@ -6,6 +6,7 @@ p(#s).
 
 rules
 
-%p(X):- K$p(X),K$ -p(X),not K$ p(X), not K$-p(X),Mp(X),M$ -p(X),not M$ p(X), not M$-p(X).
+%p(X):- K$p(X),K$ -p(X),not K$ p(X), not K$-p(X),M$p(X).%,M$ -p(X),not M$ p(X), not M$-p(X).
+p(X):- M$p(X).
 
-p(X) :- not M$-p(X). 
+ 

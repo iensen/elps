@@ -30,6 +30,7 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
     String inputFile = args[0];
     String outputFile = createOutputFile(inputFile);
     Writer out = null;
+    Settings.getSingletonInstance().setSolver(ASPSolver.Clingo);
     if (new File(outputFile).exists() && !new File(outputFile).isDirectory())
       {
         System.err.println("the output file already exists , do you want to overwrite it? y/n:");
