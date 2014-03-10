@@ -1,0 +1,14 @@
+package parser;
+
+import java.util.ArrayList;
+
+public class WorldViewExtractor {
+	
+          public ArrayList<ArrayList<AnswerSet>> extractWorldViews(ArrayList<AnswerSet> answers) {
+        	  
+          }
+          
+          private boolean isValid(ArrayList<AnswerSet> worldCandidate) {
+        	  return true;
+          }
+}

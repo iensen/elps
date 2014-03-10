@@ -30,27 +30,27 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
     String inputFile = args[0];
     String outputFile = createOutputFile(inputFile);
     Writer out = null;
-    Settings.getSingletonInstance().setSolver(ASPSolver.Clingo);
-    if (new File(outputFile).exists() && !new File(outputFile).isDirectory())
-      {
-        System.err.println("the output file already exists , do you want to overwrite it? y/n:");
-        char rep;
-        try
-        {
-          InputStreamReader converter = new InputStreamReader(System.in);
-          BufferedReader in = new BufferedReader(converter);
-          rep =in.readLine().charAt(0);
-        }
-        catch (IOException e)
-        {
-          e.printStackTrace();
-          return;
-        }
-        if (rep != 'y' && rep != 'Y')
-        {
-          return;
-        }
-      }
+      Settings.getSingletonInstance().setSolver(ASPSolver.Clingo);
+ //   if (new File(outputFile).exists() && !new File(outputFile).isDirectory())
+    //  {
+   //     System.err.println("the output file already exists , do you want to overwrite it? y/n:");
+     //   char rep;
+       // try
+        //{
+         // InputStreamReader converter = new InputStreamReader(System.in);
+         // BufferedReader in = new BufferedReader(converter);
+          //rep =in.readLine().charAt(0);
+        //}
+        //catch (IOException e)
+        //{
+        //e.printStackTrace();
+         //return;
+        //}
+        //if (rep != 'y' && rep != 'Y')
+        //{
+        // return;
+        //}
+      //}
       try
       {
         out = new FileWriter(outputFile);
@@ -93,6 +93,19 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
         translatedProgram.append(tr.translateProgram((ASTprogram) e, p.generatingSorts, true));
       }
       tr.writeTranslatedProgram();
+      System.err.println("program translated");
+      AnswerSetParser aParser = new ClingoAnswerSetParser();
+      ExternalSolver solver = null;
+      try      {   
+        solver = new ClingoSolver(translatedProgram.toString());
+      }
+      catch(Exception ex)      {         System.err.println(ex.getMessage());
+      }
+      ArrayList<AnswerSet > answerSets = aParser.getAnswerSets(solver.run(true));
+      WorldViewExtractor we = new WorldViewExtractor();
+      ArrayList<ArrayList<AnswerSet>> worldViews = we.extractWorldViews(answerSets);
+      printWorldViews(worldViews);
+      
     }
     catch (ParseException pe)
     {
@@ -100,10 +113,27 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
       return;
     }
  
-    System.err.println("program translated");
+    
   }
 
-   private boolean isInteger(String s)  {
+  private static void printWorldViews(ArrayList<ArrayList<AnswerSet >> worldViews)  {
+         for (int i = 0 ;i<worldViews.size();i++)     {
+       System.out.println("World View " +(i+1) + " out of " + worldViews.size());
+       System.out.print("{");       boolean firstAnswerSet = true;
+       for(AnswerSet answerSet : worldViews.get(i))       {
+          if(!firstAnswerSet)
+               System.out.print(", ");
+          firstAnswerSet = false;          System.out.print("{");
+          boolean firstAtom = true;
+          for(String atom : answerSet.atoms)          {
+             if(!firstAtom)             {
+               System.out.print(", ");             }
+             firstAtom = false;
+             System.out.print(atom);          }
+          System.out.print("}");      
+       }
+        System.out.println("}"+ "\n");           }
+  }   private boolean isInteger(String s)  {
     if(s.length()< 1)
               return false;    if (s.length() == 1 && s.charAt(0) == '0') return true;    if (s.charAt(0) == '0') return false;    for (int i = 0; i < s.length(); i++)    {      if (!Character.isDigit(s.charAt(i))) return false;    }    return true;  }  /**
   * @return absolute path.

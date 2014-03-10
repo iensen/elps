@@ -1,0 +1,12 @@
+package parser;
+
+
+import java.util.HashSet;
+
+
+public class AnswerSet {
+    public HashSet<String> atoms;
+    public AnswerSet() {
+        atoms=new HashSet<String>();
+    }
+}

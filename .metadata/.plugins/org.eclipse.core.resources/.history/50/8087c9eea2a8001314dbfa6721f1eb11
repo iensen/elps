@@ -1,0 +1,31 @@
+package parser;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
+public class WorldViewExtractor {
+	
+          public ArrayList<ArrayList<AnswerSet>> extractWorldViews(ArrayList<AnswerSet> answerSets) {
+        	  HashMap<HashSet<String>, ArrayList<AnswerSet>> groups = new HashMap<HashSet<String>, ArrayList<AnswerSet>>();
+        	
+        	  String [] filterPrefixes = {"k0_","k1_","m0_","m1_"};
+        	  String [] subjPrefixes = {"k0_","k1_","m0_","m1_", "m_","k_"};
+        	
+        	  for (AnswerSet answerSet : answerSets) {
+        		  HashSet<String> prefixes = answerSet.filterByPrefix(filterPrefixes);
+        		  if(!groups.containsKey(prefixes)) {
+        			  groups.put(prefixes, new ArrayList<AnswerSet>());        			  
+        		  }
+        		  groups.get(prefixes).add(new AnswerSet(answerSet.removePrefixes(subjPrefixes)));
+        	  }
+        	  
+        	  for (HashSet<String> group: groups.keySet()) {
+        		  
+        	  }
+          }
+          
+          private boolean isValid(HashSet<String> subLiterals,ArrayList<AnswerSet> worldCandidate) {
+        	  return true;
+          }
+}

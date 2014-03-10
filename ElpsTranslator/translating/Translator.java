@@ -338,19 +338,16 @@ public class Translator {
 		 			appendNewLineToTranslation();
 		 			
 		 			// m1_lprime :- k1_lprime
-		 			
 		 			translatedOutput.append("m1_"+strippedSubj+":-" +"k1_"+strippedSubj);
 					translatedOutput.append(".");
 		 			appendNewLineToTranslation();
 		 			
-                    // m0_lprime :- k1_lprimebar
-		 			
+                    // m0_lprime :- k1_lprimebar	
 		 			translatedOutput.append("m0_"+strippedSubj+":-" +"k1_"+getComplement(strippedSubj));
 					translatedOutput.append(".");
 		 			appendNewLineToTranslation();
 		 			
-		 			// m_lprime :- m1_lprime
-		 			
+		 			// m_lprime :- m1_lprime	 			
 		 			translatedOutput.append("m_"+strippedSubj+":-" +"m1_"+strippedSubj);
 					translatedOutput.append(".");
 		 			appendNewLineToTranslation();
@@ -358,15 +355,9 @@ public class Translator {
 		 			// m_lprime :- m0_lprime, not not l.
 		 			translatedOutput.append("m_"+strippedSubj+":-" +"m0_"+strippedSubj+", not not "+getOriginalLit(strippedSubj));
 		 			translatedOutput.append(".");
-		 			appendNewLineToTranslation(); 		
-		 			
-		 			
-		 			
-		 		}
-		 			
-		
+		 			appendNewLineToTranslation(); 			
+		 		}	
 		return translatedOutput.toString();
-
 	}
 	/*
 	 * remove prefixes not k_, k_, m_, not m_ from the given literal

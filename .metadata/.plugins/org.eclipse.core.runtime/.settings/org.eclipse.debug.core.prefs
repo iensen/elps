@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="strippedSubj"/>\n<expression enabled\="true" text\="at.toString()"/>\n<expression enabled\="true" text\="literalStr"/>\n<expression enabled\="true" text\="mInd"/>\n</watchExpressions>\n
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="strippedSubj"/>\n<expression enabled\="true" text\="at.toString()"/>\n<expression enabled\="true" text\="literalStr"/>\n<expression enabled\="true" text\="mInd"/>\n<expression enabled\="true" text\="answerSets"/>\n</watchExpressions>\n
