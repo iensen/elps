@@ -10,7 +10,7 @@ public class WorldViewExtractor {
 		HashMap<HashSet<String>, ArrayList<AnswerSet>> groups = new HashMap<HashSet<String>, ArrayList<AnswerSet>>();
 
 		String [] filterPrefixes = {"k0_","k1_","m0_","m1_"};
-		String [] subjPrefixes = {"k0_","k1_","m0_","m1_", "m_","k_","-k0_","-k1_","-m0_","-m1_", "-m_","-k_"};
+		String [] subjPrefixes = {"k0_","k1_","m0_","m1_", "m_","k_"};
 
 		for (AnswerSet answerSet : answerSets) {
 			HashSet<String> prefixes = answerSet.filterByPrefix(filterPrefixes);

@@ -7,13 +7,6 @@ fairGPA(mike)|highGPA(mike).
 student(mike).
 student(ann).
 student(mary).
-k1_0eligible(X_G):-not k0_0eligible(X_G), student(X_G).
-k0_0eligible(X_G):-not k1_0eligible(X_G), student(X_G).
-k0_0eligible(X_G):-k1_eligible(X_G).
-k0_0eligible(X_G):-m1_eligible(X_G).
-k0_0eligible(X_G):-m0_0eligible(X_G).
--k_0eligible(X_G):-k0_0eligible(X_G).
--k_0eligible(X_G):-k1_0eligible(X_G), not -eligible(X_G).
 k1_eligible(X_G):-not k0_eligible(X_G), student(X_G).
 k0_eligible(X_G):-not k1_eligible(X_G), student(X_G).
 k0_eligible(X_G):-k1_0eligible(X_G).
@@ -21,3 +14,10 @@ k0_eligible(X_G):-m1_0eligible(X_G).
 k0_eligible(X_G):-m0_eligible(X_G).
 -k_eligible(X_G):-k0_eligible(X_G).
 -k_eligible(X_G):-k1_eligible(X_G), not eligible(X_G).
+k1_0eligible(X_G):-not k0_0eligible(X_G), student(X_G).
+k0_0eligible(X_G):-not k1_0eligible(X_G), student(X_G).
+k0_0eligible(X_G):-k1_eligible(X_G).
+k0_0eligible(X_G):-m1_eligible(X_G).
+k0_0eligible(X_G):-m0_0eligible(X_G).
+-k_0eligible(X_G):-k0_0eligible(X_G).
+-k_0eligible(X_G):-k1_0eligible(X_G), not -eligible(X_G).
