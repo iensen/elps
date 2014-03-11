@@ -1,8 +1,0 @@
-package parser;
-
-public class WorldViewExtractor {
-	
-          public ArrayList<ArrayList<AnswerSet>> extractWorldViews(ArrayList<AnswerSet> answers) {
-        	  return null;
-          }
-}
