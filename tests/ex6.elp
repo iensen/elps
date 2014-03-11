@@ -1,0 +1,16 @@
+
+p|q.
+p:-m_p.
+q:-m_q.
+m1_q:-not m0_q.
+m0_q:-not m1_q.
+m1_q:-k1_q.
+m0_q:-k1_0q.
+m_q:-m1_q.
+m_q:-m0_q, not not q.
+m1_p:-not m0_p.
+m0_p:-not m1_p.
+m1_p:-k1_p.
+m0_p:-k1_0p.
+m_p:-m1_p.
+m_p:-m0_p, not not p.

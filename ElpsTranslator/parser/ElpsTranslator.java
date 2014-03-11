@@ -2712,6 +2712,7 @@ public static void main(String [] args)
 
     if(t!=null && (predS1.subj!=0))
     {
+        System.out.println(predS1.negatedSubj);
         {if (true) throw new ParseException("ERROR: not is not allowed before subjective literals " + n.first.beginLine + " column " + n.first.beginColumn);}
     }
       if (jj_2_23(1)) {
@@ -4196,16 +4197,6 @@ public static void main(String [] args)
     finally { jj_save(37, xla); }
   }
 
-  private boolean jj_3R_112() {
-    if (jj_scan_token(NOT)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_109() {
-    if (jj_3R_120()) return true;
-    return false;
-  }
-
   private boolean jj_3R_88() {
     if (jj_3R_40()) return true;
     return false;
@@ -4221,6 +4212,16 @@ public static void main(String [] args)
   private boolean jj_3R_42() {
     if (jj_3R_35()) return true;
     if (jj_3R_39()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_112() {
+    if (jj_scan_token(NOT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_109() {
+    if (jj_3R_120()) return true;
     return false;
   }
 
@@ -4339,6 +4340,14 @@ public static void main(String [] args)
     return false;
   }
 
+  private boolean jj_3_26() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(45)) jj_scanpos = xsp;
+    if (jj_scan_token(KIDENTIFIER_WITH_OP)) return true;
+    return false;
+  }
+
   private boolean jj_3_9() {
     if (jj_3R_30()) return true;
     if (jj_3R_31()) return true;
@@ -4353,21 +4362,13 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3_26() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(45)) jj_scanpos = xsp;
-    if (jj_scan_token(KIDENTIFIER_WITH_OP)) return true;
+  private boolean jj_3R_99() {
+    if (jj_scan_token(IDENTIFIER_WITH_OP)) return true;
     return false;
   }
 
   private boolean jj_3_10() {
     if (jj_3R_32()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_99() {
-    if (jj_scan_token(IDENTIFIER_WITH_OP)) return true;
     return false;
   }
 
@@ -4445,16 +4446,16 @@ public static void main(String [] args)
     return false;
   }
 
+  private boolean jj_3R_106() {
+    if (jj_3R_116()) return true;
+    if (jj_3R_104()) return true;
+    return false;
+  }
+
   private boolean jj_3_17() {
     if (jj_3R_38()) return true;
     if (jj_3R_39()) return true;
     if (jj_3R_38()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_106() {
-    if (jj_3R_116()) return true;
-    if (jj_3R_104()) return true;
     return false;
   }
 
@@ -4560,6 +4561,16 @@ public static void main(String [] args)
     return false;
   }
 
+  private boolean jj_3R_64() {
+    if (jj_3R_95()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_100()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
   private boolean jj_3_7() {
     if (jj_3R_28()) return true;
     return false;
@@ -4571,16 +4582,6 @@ public static void main(String [] args)
     if (jj_3_7()) {
     jj_scanpos = xsp;
     if (jj_3_8()) return true;
-    }
-    return false;
-  }
-
-  private boolean jj_3R_64() {
-    if (jj_3R_95()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_100()) { jj_scanpos = xsp; break; }
     }
     return false;
   }
@@ -4691,11 +4692,6 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3_2() {
-    if (jj_3R_25()) return true;
-    return false;
-  }
-
   private boolean jj_3R_104() {
     Token xsp;
     xsp = jj_scanpos;
@@ -4717,13 +4713,18 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_82() {
-    if (jj_3R_31()) return true;
+  private boolean jj_3_2() {
+    if (jj_3R_25()) return true;
     return false;
   }
 
   private boolean jj_3R_79() {
     if (jj_scan_token(AGGREGATE_MIN_OB)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_82() {
+    if (jj_3R_31()) return true;
     return false;
   }
 
@@ -4750,13 +4751,13 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_40() {
-    if (jj_scan_token(VARIABLE)) return true;
+  private boolean jj_3R_69() {
+    if (jj_scan_token(NOTEQ)) return true;
     return false;
   }
 
-  private boolean jj_3R_69() {
-    if (jj_scan_token(NOTEQ)) return true;
+  private boolean jj_3R_40() {
+    if (jj_scan_token(VARIABLE)) return true;
     return false;
   }
 
@@ -4856,6 +4857,11 @@ public static void main(String [] args)
     return false;
   }
 
+  private boolean jj_3_37() {
+    if (jj_3R_44()) return true;
+    return false;
+  }
+
   private boolean jj_3R_126() {
     if (jj_3R_31()) return true;
     return false;
@@ -4882,18 +4888,13 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3_37() {
-    if (jj_3R_44()) return true;
+  private boolean jj_3R_123() {
+    if (jj_scan_token(DIV)) return true;
     return false;
   }
 
   private boolean jj_3_5() {
     if (jj_3R_26()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_123() {
-    if (jj_scan_token(DIV)) return true;
     return false;
   }
 
@@ -4962,11 +4963,6 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_63() {
-    if (jj_3R_94()) return true;
-    return false;
-  }
-
   private boolean jj_3R_117() {
     if (jj_scan_token(PLUS)) return true;
     return false;
@@ -4979,6 +4975,11 @@ public static void main(String [] args)
     jj_scanpos = xsp;
     if (jj_3R_118()) return true;
     }
+    return false;
+  }
+
+  private boolean jj_3R_63() {
+    if (jj_3R_94()) return true;
     return false;
   }
 
@@ -5006,14 +5007,14 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_120() {
-    if (jj_scan_token(OB)) return true;
-    if (jj_3R_124()) return true;
+  private boolean jj_3_34() {
+    if (jj_3R_35()) return true;
     return false;
   }
 
-  private boolean jj_3_34() {
-    if (jj_3R_35()) return true;
+  private boolean jj_3R_120() {
+    if (jj_scan_token(OB)) return true;
+    if (jj_3R_124()) return true;
     return false;
   }
 
@@ -5055,15 +5056,15 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_36() {
-    if (jj_3R_39()) return true;
-    return false;
-  }
-
   private boolean jj_3_32() {
     if (jj_3R_38()) return true;
     if (jj_3R_41()) return true;
     if (jj_3R_35()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_36() {
+    if (jj_3R_39()) return true;
     return false;
   }
 
@@ -5080,11 +5081,6 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_111() {
-    if (jj_3R_121()) return true;
-    return false;
-  }
-
   private boolean jj_3R_91() {
     if (jj_3R_35()) return true;
     return false;
@@ -5097,8 +5093,8 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_93() {
-    if (jj_3R_39()) return true;
+  private boolean jj_3R_111() {
+    if (jj_3R_121()) return true;
     return false;
   }
 
@@ -5109,13 +5105,13 @@ public static void main(String [] args)
     return false;
   }
 
-  private boolean jj_3R_90() {
-    if (jj_3R_38()) return true;
+  private boolean jj_3R_93() {
+    if (jj_3R_39()) return true;
     return false;
   }
 
-  private boolean jj_3R_50() {
-    if (jj_scan_token(WEAKSEP)) return true;
+  private boolean jj_3R_90() {
+    if (jj_3R_38()) return true;
     return false;
   }
 
@@ -5123,6 +5119,11 @@ public static void main(String [] args)
     if (jj_3R_40()) return true;
     if (jj_3R_39()) return true;
     if (jj_3R_38()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_50() {
+    if (jj_scan_token(WEAKSEP)) return true;
     return false;
   }
 

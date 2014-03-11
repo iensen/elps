@@ -108,7 +108,7 @@ public class WorldViewExtractor {
 		// (d) if m0_l' is in the sets of W , then l is missing from every set of W
 
 		m0Loop: for(String subjLiteral: subjLiterals) {
-			if(subjLiteral.startsWith("k1_")) {
+			if(subjLiteral.startsWith("m0_")) {
 				// then l is in every set of W
 				String l = getASPLiteral(subjLiteral.substring(3));
 				for(AnswerSet answerSet: worldCandidate) {
