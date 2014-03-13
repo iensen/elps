@@ -1,0 +1,15 @@
+predicates
+p().
+q().
+r().
+s().
+t().
+u().
+v().
+rules
+p |q .
+p|r.
+s :- not M$q.
+t :- not M$r.
+u :- not s.
+v:- not t.

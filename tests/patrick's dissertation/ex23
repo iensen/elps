@@ -1,0 +1,9 @@
+predicates
+p().
+q().
+r().
+s().
+rules
+p:- not q.
+r|s:- K$p.
+q|r :- not K$p.

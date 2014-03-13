@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{sparc}
+Evgenii Balai, Michael Gelfond, and Yuanlin Zhang.
+\newblock Towards answer set programming with sorts.
+\newblock In {\em Logic Programming and Nonmonotonic Reasoning}, pages
+  135--147. Springer, 2013.
+
+\bibitem{epist}
+Chitta Baral and Michael Gelfond.
+\newblock Logic programming and knowledge representation.
+\newblock {\em The Journal of Logic Programming}, 19:73--148, 1994.
+
+\end{thebibliography}

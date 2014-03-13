@@ -1,0 +1,10 @@
+predicates
+p().
+q().
+r().
+s().
+
+rules
+p:- not M$q.
+q:- not M$p.
+r | s :- p.

@@ -1,0 +1,6 @@
+predicates
+p().
+q().
+rules
+p| -p.
+p:- M$p.

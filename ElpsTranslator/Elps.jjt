@@ -17,7 +17,7 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
 }
   public static void main(String [] args)
   {
-    System.err.println("ELPS V1.02");
+    System.err.println("ELPS V1.03");
     if(args.length<1)
     {
       System.err.println("a path to an ELPS program must be the only argument");

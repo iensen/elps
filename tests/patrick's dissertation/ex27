@@ -1,0 +1,5 @@
+predicates
+p().
+rules
+p:- K$p.
+p:- not K$p.

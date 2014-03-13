@@ -1,9 +1,0 @@
-
-p:-q.
-q:-m_p.
-m1_p:-not m0_p.
-m0_p:-not m1_p.
-m1_p:-k1_p.
-m0_p:-k1_0p.
-m_p:-m1_p.
-m_p:-m0_p, not not p.

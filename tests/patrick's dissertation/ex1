@@ -1,0 +1,8 @@
+% The examples ex1-ex61 are derived from the preliminary 
+% version of the dissertation of Patrick Kahl, Texas Tech University,2014
+sorts
+predicates
+p().
+rules
+p :- M$p.
+

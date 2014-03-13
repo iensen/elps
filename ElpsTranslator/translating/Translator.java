@@ -33,6 +33,7 @@ import parser.ParseException;
 import parser.SimpleNode;
 import parser.ElpsTranslator;
 import parser.ElpsTranslatorTreeConstants;
+import parser.SparcConstants;
 import parser.StringListUtils;
 import sorts.BuiltIn;
 import sorts.CurlyBracketsExpander;
@@ -104,6 +105,36 @@ public class Translator {
 		this.inputFileName = inputFileName;
 	}
 	
+	void removeSubjPart(SimpleNode n) {
+		if(n.getId()==ElpsTranslatorTreeConstants.JJTPREDSYMBOL) {
+			ASTpredSymbol pred = (ASTpredSymbol) n;
+			pred.subj = 0;
+			return;
+		}
+		for(int i=0;i<n.jjtGetNumChildren();i++) {
+		   removeSubjPart((SimpleNode)n.jjtGetChild(i));
+		}
+	}
+	
+	
+	ASTextendedNonRelAtom makeNonSubjCopy(ASTextendedNonRelAtom originalAtom) {
+	   ASTextendedNonRelAtom atom = (ASTextendedNonRelAtom) originalAtom.deepCopy();
+	   removeSubjPart(atom);
+	   return atom;
+	   
+	}
+	
+	void addLitToTheBodyOf(ASTextendedNonRelAtom originalAtom, ASTextendedNonRelAtom litToAdd) {
+		SimpleNode node = originalAtom;
+		while(node.getId() != ElpsTranslator.JJTBODY) {
+			node = (SimpleNode)node.jjtGetParent();
+		}
+		ASTatom atom = new ASTatom(ElpsTranslator.JJTATOM);
+		atom.jjtAddChild(litToAdd, 0);
+		node.jjtAddChild(atom, node.jjtGetNumChildren());
+	}
+	
+	
 	/**
 	 * Do the replacement described in lines 11-12 and 22-23
 	 * @param originalAtom
@@ -111,13 +142,17 @@ public class Translator {
 	 * @param subjM
 	 * @param subjK
 	 */
+	
 	void replaceSubjPredicateName(ASTextendedNonRelAtom originalAtom,SimpleNode n,HashSet<ASTextendedNonRelAtom> subjM,HashSet<ASTextendedNonRelAtom> subjK) {
 		if(n.getId()==ElpsTranslatorTreeConstants.JJTPREDSYMBOL) {
 			ASTpredSymbol predS= (ASTpredSymbol)n;
 			String image = n.toString();
-
+         
 			// if we found a subjective literal
 			if(predS.subj == 1) {
+				
+				if(!predS.negatedSubj)
+				    addLitToTheBodyOf(originalAtom,  makeNonSubjCopy(originalAtom));
 				// cut K
 				n.image = image.substring(image.indexOf('K')+1).trim();
 				// if it starts from -
@@ -132,10 +167,14 @@ public class Translator {
 				if(!predS.negatedSubj) {
 					originalAtom.image = "not ";
 				}
-
+                
 				subjK.add(originalAtom);
 			}
 
+			
+			
+			
+			
 			if(predS.subj == 2) {
 				n.image = image.substring(image.indexOf('M')+1).trim();
 				if(predS.negative) {
@@ -153,6 +192,8 @@ public class Translator {
 			replaceSubjPredicateName(originalAtom, (SimpleNode)n.jjtGetChild(i), subjM, subjK);
 		}
 	}
+	
+	
 	/**
 	 * Find all occurences of K and M atoms
 	 */

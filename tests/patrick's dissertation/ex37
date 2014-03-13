@@ -1,0 +1,9 @@
+predicates
+p().
+q().
+r().
+rules
+p | q | r.
+:- M$p, M$q.
+:- M$p, M$r.
+:- M$q, M$r.

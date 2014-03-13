@@ -135,6 +135,50 @@ class SimpleNode implements Node {
 	  return this.id;
   }
   
+  /**
+   * Create a deep copy (clone) of a SimpleNode.  deepCopy or
+   * copyFields Must be overridden if a subclass has data fields
+   * that must be copied.
+   */
+  public SimpleNode deepCopy() {
+      SimpleNode result;
+      try {
+          result = (SimpleNode)getClass().getConstructor(new Class[]{int.class}).
+              newInstance(new Object[]{new Integer(id)});
+      }
+      catch (Exception e) {
+          // could be thrown if a subclass does not have a constructor(id)
+          // all javacc generated classes have it.
+          throw new RuntimeException(e);
+      }
+      result.copyFields(this);
+      return result;
+  }
+
+  /**
+   * Copy fields and children, but not parent.
+   * @param that node to copy from
+   * @return this for convenience.
+   */
+  public SimpleNode copyFields(SimpleNode that) {
+      this.id = that.id;
+      this.parser = that.parser;
+      this.beginLine = that.beginLine;
+      this.beginColumn = that.beginColumn;
+      if(that.image!=null)
+         this.image = new String(that.image);
+      if(that.children !=null) {    
+      this.children = new Node[that.children.length];
+      this.parent = that.parent;
+      for (int i=0; i<that.children.length; i++) {
+          this.children[i] =  ((SimpleNode)that.children[i]).deepCopy();
+      }
+      }
+      return this;
+  }
+
+  
+  
   public void removeChildren() {
 	  this.children=null;
   }
