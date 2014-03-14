@@ -204,13 +204,13 @@ $\alpha_1, \dots, \alpha_n$ are either identifiers, numbers or records.
 \begin{enumerate}
 
 \item
-\textbf{numeric range} is of the form:
+\textbf{numeric range}  of the form
 \begin{equation*}
-number_1..number_2
+n_1..n_2
 \end{equation*}
 
-where $number_1$ and $number_2$ are non-negative numbers such that $number_1 \le number_2$. The expression defines the set 
-of sequential numbers \\$\{number_1, number_1+1, \dots, number_2\}$.
+where $n_1$ and $n_2$ are non-negative integer numbers such that $n_1 \le n_2$. The expression defines the set 
+of sequential numbers $\{n_1, n_1+1, \dots, n_2\}$.
 
 \textit{Example:}
 
@@ -220,13 +220,13 @@ of sequential numbers \\$\{number_1, number_1+1, \dots, number_2\}$.
 \texttt{\#sort1} consists of numbers $\{1,2,3\}$.
 
 
-\item \textbf{identifier range} is of the form:
+\item \textbf{identifier range}  of the form
 
 \begin{equation*}
   id_1..id_2
 \end{equation*}
-where $id_1$ and $id_2$ are identifiers both starting with a lowercase letter.
-$id_1$ should be lexicographically \footnote{ The Unicode (UTF-16) is used for  ordering of individual characters} smaller than or equal to  $id_2$, and the length of $id_1$ must be less than or equal to the length of $id_2$. That is,  $id_1 \leq id_2$ and $|id_1| \leq |id_2|$.
+where $id_1$ and $id_2$ are identifiers, 
+$id_1$ is lexicographically \footnote{ The Unicode (UTF-16) is used for  ordering of individual characters} smaller than or equal to  $id_2$, and the length of $id_1$ is less than or equal to the length of $id_2$. That is,  $id_1 \leq id_2$ and $|id_1| \leq |id_2|$.
 The expression defines the set of strings  $\{s: id_1\leq s \leq id_2 \land |id_1|\leq |s| \leq |id_2|\}$.
 
 
@@ -239,7 +239,7 @@ The expression defines the set of strings  $\{s: id_1\leq s \leq id_2 \land |id_
 
 \texttt{\#sort1} consists of letters $\{a,b,c,d,e,f\}$.
 
-\item \textbf{set of ground terms} is of the form:
+\item \textbf{set of ground terms}  of the form
 
 
 \begin{equation*}
@@ -261,7 +261,7 @@ The expression denotes a set of \textit{ground terms} $\{t_1,...,t_n\}$, defined
 
 
 
-\item \textbf{set of records} is of the form:
+\item \textbf{set of records} of the form
 
 \begin{equation*}
 f(sort\_name_1(var_1),..., sort\_name_n(var_n)):
@@ -291,7 +291,7 @@ The expression defines a collection of ground terms
 \end{verbatim}
 
 The sort \texttt{\#sf} consists of records $\{f(1,1,2),f(1,1,1),f(2,1,1)\}$
- \item \textbf{set-theoretic expression} can be in one of the following forms:
+ \item \textbf{set-theoretic expression}  in one of the following forms
 \begin{itemize}
 \item $\#sort\_name$  
 \item an expression of the form (3), denoting a set of ground terms
@@ -309,7 +309,7 @@ The operations $+$ $*$ and $-$ stand for union, intersection and difference corr
  #sort2={1,2,3} + {a,b,f(c)} + f(#sort1).
 \end{verbatim}
  \texttt{\#sort2} consists of ground terms $\{1,2,3,a,b,f(c),f(a),f(b),f(2)\}$.
-\item \textbf{concatenation} is of the form
+\item \textbf{concatenation} of the form
 \begin{equation*}
  [b\_stmt_1] ... [b\_stmt_n]
 \end{equation*}
