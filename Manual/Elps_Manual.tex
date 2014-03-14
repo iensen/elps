@@ -346,14 +346,15 @@ $predicates$
 
 \st and is followed by statements of the form
 
+\begin{equation*}
+pred\_symbol(\#sortName_1,\dots,\#sortName_n)
+\end{equation*}
 \st
-$pred\_symbol(\#sortName\_1,\dots,\#sortName\_n)$
-
-\st
+Where $pred\_symbol$ is an identifier(referred to as a predicate symbol) and  $\#sortName_1$,\dots,$\#sortName_n$ are sorts defined in sort definitions section of the program.
 
 Multiple declarations containing the same predicate symbol are not allowed.
 0-arity predicates must be declared as $pred\_symbol()$.
-\st For any sort name $\#s$, the system includes declaration  $s(\#s)$ automatically.
+\st For any sort name $\#s$, the system includes declaration  $\#s(\#s)$ automatically. 
 
 \subsection{Program Rules}
 
