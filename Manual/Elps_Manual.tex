@@ -140,8 +140,9 @@ highGPA(mary).
 To run  ${\cal ELPS}$ solver  on the program above, 
 we change current directory to a directory having the file \texttt{program.sp} with the program written in it, and the downloaded file \texttt{elps.jar}.  Then, we run the command:
 \begin{verbatim}
-iensen@iensen-OptiPlex-755:~/elps$ java -jar elps.jar elib.lp
-ELPS V1.02
+
+> java -jar elps.jar program.sp
+ELPS V1.03
 program translated
 World View 1 out of 1
 {{eligible(mary), student(mary), student(mike), interview(mike),
@@ -226,7 +227,7 @@ of sequential numbers $\{n_1, n_1+1, \dots, n_2\}$.
   id_1..id_2
 \end{equation*}
 where $id_1$ and $id_2$ are identifiers, 
-$id_1$ is lexicographically \footnote{ The Unicode (UTF-16) is used for  ordering of individual characters} smaller than or equal to  $id_2$, and the length of $id_1$ is less than or equal to the length of $id_2$. That is,  $id_1 \leq id_2$ and $|id_1| \leq |id_2|$.
+$id_1$ is lexicographically \footnote{ The system default encoding is used for  ordering of individual characters} smaller than or equal to  $id_2$, and the length of $id_1$ is less than or equal to the length of $id_2$. That is,  $id_1 \leq id_2$ and $|id_1| \leq |id_2|$.
 The expression defines the set of strings  $\{s: id_1\leq s \leq id_2 \land |id_1|\leq |s| \leq |id_2|\}$.
 
 
