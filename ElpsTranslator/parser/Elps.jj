@@ -21,7 +21,7 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
 }
   public static void main(String [] args)
   {
-    System.err.println("ELPS V1.03");
+    System.err.println("ELPS V1.04");
     if(args.length<1)
     {
       System.err.println("a path to an ELPS program must be the only argument");
@@ -120,9 +120,11 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
          for (int i = 0 ;i<worldViews.size();i++)     {
        System.out.println("World View " +(i+1) + " out of " + worldViews.size());
        System.out.print("{");       boolean firstAnswerSet = true;
+       int aSet = 1;
        for(AnswerSet answerSet : worldViews.get(i))       {
-          if(!firstAnswerSet)
-               System.out.print(", ");
+         System.out.println("Answer Set " + aSet+ ": ");
+        //  if(!firstAnswerSet)
+         //      System.out.print(", ");
           firstAnswerSet = false;          System.out.print("{");
           boolean firstAtom = true;
           for(String atom : answerSet.atoms)          {
@@ -130,9 +132,12 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
                System.out.print(", ");             }
              firstAtom = false;
              System.out.print(atom);          }
-          System.out.print("}");      
+          System.out.print("}");
+          System.out.println("\n\n");
+            ++ aSet;
        }
-        System.out.println("}"+ "\n");           }
+        System.out.println("}"+ "\n");
+                 }
   }   private boolean isInteger(String s)  {
     if(s.length()< 1)
               return false;    if (s.length() == 1 && s.charAt(0) == '0') return true;    if (s.charAt(0) == '0') return false;    for (int i = 0; i < s.length(); i++)    {      if (!Character.isDigit(s.charAt(i))) return false;    }    return true;  }  /**

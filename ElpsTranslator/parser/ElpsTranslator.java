@@ -85,7 +85,7 @@ public static String createOutputFile(String inputFile)
 
 public static void main(String [] args)
   {
-    System.err.println("ELPS V1.03");
+    System.err.println("ELPS V1.04");
     if(args.length<1)
     {
       System.err.println("a path to an ELPS program must be the only argument");
@@ -191,10 +191,12 @@ public static void main(String [] args)
        System.out.println("World View " +(i+1) + " out of " + worldViews.size());
        System.out.print("{");
        boolean firstAnswerSet = true;
+       int aSet = 1;
        for(AnswerSet answerSet : worldViews.get(i))
        {
-          if(!firstAnswerSet)
-               System.out.print(", ");
+         System.out.println("Answer Set " + aSet+ ": ");
+        //  if(!firstAnswerSet)
+         //      System.out.print(", ");
           firstAnswerSet = false;
           System.out.print("{");
           boolean firstAtom = true;
@@ -208,8 +210,11 @@ public static void main(String [] args)
              System.out.print(atom);
           }
           System.out.print("}");
+          System.out.println("\u005cn\u005cn");
+            ++ aSet;
        }
         System.out.println("}"+ "\u005cn");
+
 
      }
   }
@@ -4197,47 +4202,6 @@ public static void main(String [] args)
     finally { jj_save(37, xla); }
   }
 
-  private boolean jj_3R_88() {
-    if (jj_3R_40()) return true;
-    return false;
-  }
-
-  private boolean jj_3_28() {
-    if (jj_3R_38()) return true;
-    if (jj_3R_39()) return true;
-    if (jj_3R_38()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_42() {
-    if (jj_3R_35()) return true;
-    if (jj_3R_39()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_112() {
-    if (jj_scan_token(NOT)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_109() {
-    if (jj_3R_120()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_49() {
-    if (jj_scan_token(CRRSEP)) return true;
-    return false;
-  }
-
-  private boolean jj_3_27() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_42()) jj_scanpos = xsp;
-    if (jj_3R_43()) return true;
-    return false;
-  }
-
   private boolean jj_3R_103() {
     Token xsp;
     xsp = jj_scanpos;
@@ -5174,6 +5138,47 @@ public static void main(String [] args)
     if (jj_3_14()) jj_scanpos = xsp;
     if (jj_scan_token(OB)) return true;
     if (jj_3R_63()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_88() {
+    if (jj_3R_40()) return true;
+    return false;
+  }
+
+  private boolean jj_3_28() {
+    if (jj_3R_38()) return true;
+    if (jj_3R_39()) return true;
+    if (jj_3R_38()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_42() {
+    if (jj_3R_35()) return true;
+    if (jj_3R_39()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_112() {
+    if (jj_scan_token(NOT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_109() {
+    if (jj_3R_120()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_49() {
+    if (jj_scan_token(CRRSEP)) return true;
+    return false;
+  }
+
+  private boolean jj_3_27() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_42()) jj_scanpos = xsp;
+    if (jj_3R_43()) return true;
     return false;
   }
 
