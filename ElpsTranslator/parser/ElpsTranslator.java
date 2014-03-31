@@ -194,6 +194,7 @@ public static void main(String [] args)
        int aSet = 1;
        for(AnswerSet answerSet : worldViews.get(i))
        {
+          System.out.println("\u005cn\u005cn");
          System.out.println("Answer Set " + aSet+ ": ");
         //  if(!firstAnswerSet)
          //      System.out.print(", ");
@@ -210,10 +211,10 @@ public static void main(String [] args)
              System.out.print(atom);
           }
           System.out.print("}");
-          System.out.println("\u005cn\u005cn");
+
             ++ aSet;
        }
-        System.out.println("}"+ "\u005cn");
+        System.out.println("\u005cn\u005cn}"+ "\u005cn");
 
 
      }

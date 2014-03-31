@@ -122,6 +122,7 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
        System.out.print("{");       boolean firstAnswerSet = true;
        int aSet = 1;
        for(AnswerSet answerSet : worldViews.get(i))       {
+          System.out.println("\n\n");
          System.out.println("Answer Set " + aSet+ ": ");
         //  if(!firstAnswerSet)
          //      System.out.print(", ");
@@ -133,10 +134,10 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
              firstAtom = false;
              System.out.print(atom);          }
           System.out.print("}");
-          System.out.println("\n\n");
+         
             ++ aSet;
        }
-        System.out.println("}"+ "\n");
+        System.out.println("\n\n}"+ "\n");
                  }
   }   private boolean isInteger(String s)  {
     if(s.length()< 1)
