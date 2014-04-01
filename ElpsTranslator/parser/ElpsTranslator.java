@@ -189,7 +189,8 @@ public static void main(String [] args)
      for (int i = 0 ;i<worldViews.size();i++)
      {
        System.out.println("World View " +(i+1) + " out of " + worldViews.size()+":");
-      // System.out.print("{\n");       boolean firstAnswerSet = true;
+       System.out.print("\u005cn");
+       boolean firstAnswerSet = true;
        int aSet = 1;
        for(AnswerSet answerSet : worldViews.get(i))
        {
@@ -212,10 +213,11 @@ public static void main(String [] args)
 
             ++ aSet;
        }
-        System.out.println("\u005cn");
+        System.out.println("\u005cn\u005cn");
 
 
      }
+
   }
   private boolean isInteger(String s)
   {

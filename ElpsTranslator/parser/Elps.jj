@@ -119,7 +119,7 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
   private static void printWorldViews(ArrayList<ArrayList<AnswerSet >> worldViews)  {
          for (int i = 0 ;i<worldViews.size();i++)     {
        System.out.println("World View " +(i+1) + " out of " + worldViews.size()+":");
-      // System.out.print("{\n");       boolean firstAnswerSet = true;
+       System.out.print("\n");       boolean firstAnswerSet = true;
        int aSet = 1;
        for(AnswerSet answerSet : worldViews.get(i))       {
          // System.out.println("\n");
@@ -136,8 +136,9 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
          
             ++ aSet;
        }
-        System.out.println("\n");
+        System.out.println("\n\n");
                  }
+ 
   }   private boolean isInteger(String s)  {
     if(s.length()< 1)
               return false;    if (s.length() == 1 && s.charAt(0) == '0') return true;    if (s.charAt(0) == '0') return false;    for (int i = 0; i < s.length(); i++)    {      if (!Character.isDigit(s.charAt(i))) return false;    }    return true;  }  /**
