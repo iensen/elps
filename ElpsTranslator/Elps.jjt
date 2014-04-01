@@ -131,7 +131,7 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
          
             ++ aSet;
        }
-        System.out.println("\n\n");
+        System.out.println("\n");
                  }
  
   }   private boolean isInteger(String s)  {

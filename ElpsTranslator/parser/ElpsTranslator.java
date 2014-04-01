@@ -212,7 +212,7 @@ public static void main(String [] args)
 
             ++ aSet;
        }
-        System.out.println("\u005cn\u005cn");
+        System.out.println("\u005cn");
 
 
      }
