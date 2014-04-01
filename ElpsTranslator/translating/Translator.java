@@ -118,7 +118,9 @@ public class Translator {
 	
 	
 	ASTextendedNonRelAtom makeNonSubjCopy(ASTextendedNonRelAtom originalAtom) {
+	   System.out.println(originalAtom.toString());
 	   ASTextendedNonRelAtom atom = (ASTextendedNonRelAtom) originalAtom.deepCopy();
+	   System.out.println(atom.toString());
 	   removeSubjPart(atom);
 	   return atom;
 	   
@@ -161,9 +163,10 @@ public class Translator {
 				}
 				// now n.image is l^\prime
 
-
+                
 				n.image="k_"+n.image;
 				predS.negative = true;
+				
 				if(!predS.negatedSubj) {
 					originalAtom.image = "not ";
 				}
@@ -179,7 +182,9 @@ public class Translator {
 				n.image = image.substring(image.indexOf('M')+1).trim();
 				if(predS.negative) {
 					n.image = '0'+n.image.substring(1);
+					predS.negative = false;
 				}
+				System.out.println(predS.negatedSubj);
 				// now n.image is l^\prime
 				if(predS.negatedSubj) {
 					originalAtom.image = "not ";

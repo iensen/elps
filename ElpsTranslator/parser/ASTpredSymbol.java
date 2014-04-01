@@ -42,4 +42,28 @@ public class ASTpredSymbol extends SimpleNode {
 
 		return result.toString();
 	}
+	
+	/**
+	   * Copy fields and children, but not parent.
+	   * @param that node to copy from
+	   * @return this for convenience.
+	   */
+	  public SimpleNode copyFields(SimpleNode that) {
+	      this.id = that.id;
+	      this.parser = that.parser;
+	      this.beginLine = that.beginLine;
+	      this.beginColumn = that.beginColumn;
+	  	  this.negative = ((ASTpredSymbol)that).negative;
+		 this.hasPoundSign = ((ASTpredSymbol)that).hasPoundSign;;
+	      if(that.image!=null)
+	         this.image = new String(that.image);
+	      if(that.children !=null) {    
+	      this.children = new Node[that.children.length];
+	      this.parent = that.parent;
+	      for (int i=0; i<that.children.length; i++) {
+	          this.children[i] =  ((SimpleNode)that.children[i]).deepCopy();
+	      }
+	      }
+	      return this;
+	  }
 }

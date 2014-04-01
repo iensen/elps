@@ -3466,7 +3466,7 @@ public static void main(String [] args)
     if(t.image.indexOf("M$")!=-1)
     {
         jjtn000.subj = 2;
-        if(t.image.startsWith("-"))
+        if(t.image.startsWith("not"))
         {
           jjtn000.negatedSubj = true;
         }

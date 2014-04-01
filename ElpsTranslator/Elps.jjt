@@ -437,7 +437,7 @@ SimpleNode symbolicConstant() :
     if(t.image.indexOf("M$")!=-1)
     {
         jjtThis.subj = 2;
-        if(t.image.startsWith("-"))
+        if(t.image.startsWith("not"))
         {
           jjtThis.negatedSubj = true;
         }

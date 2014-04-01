@@ -1,0 +1,9 @@
+
+:-not  -k_0p(a),-p(a).
+k1_0p(a):-not k0_0p(a).
+k0_0p(a):-not k1_0p(a).
+k0_0p(a):-k1_p(a).
+k0_0p(a):-m1_p(a).
+k0_0p(a):-m0_0p(a).
+-k_0p(a):-k0_0p(a).
+-k_0p(a):-k1_0p(a), not -p(a).
