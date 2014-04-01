@@ -142,13 +142,15 @@ we change current directory to a directory having the file \texttt{program.sp} w
 \begin{verbatim}
 
 > java -jar elps.jar program.sp
-ELPS V1.03
+ELPS V1.04
 program translated
-World View 1 out of 1
-{{eligible(mary), student(mary), student(mike), interview(mike),
- highGPA(mary), fairGPA(mike)}, {eligible(mary), student(mary),
- student(mike), interview(mike), highGPA(mike), highGPA(mary),
- eligible(mike)}}
+World View 1 out of 1:
+{eligible(mary), student(mary), student(ann), student(mike), 
+interview(mike), interview(ann), highGPA(mary), fairGPA(mike)}
+{eligible(mary), student(mary), student(ann), student(mike), 
+interview(mike), interview(ann), highGPA(mike), highGPA(mary), 
+eligible(mike)}
+
 
 \end{verbatim}
 The program has a single world view, which contains \texttt{interview(mike)} in both belief sets.
