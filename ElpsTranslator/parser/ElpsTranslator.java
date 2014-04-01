@@ -188,6 +188,7 @@ public static void main(String [] args)
 
      for (int i = 0 ;i<worldViews.size();i++)
      {
+
        System.out.println("World View " +(i+1) + " out of " + worldViews.size()+":");
        boolean firstAnswerSet = true;
        int aSet = 1;
@@ -195,7 +196,7 @@ public static void main(String [] args)
        {
          // System.out.println("\n");
           if(!firstAnswerSet)
-               System.out.print("\u005cn");
+               System.out.print("\u005cn\u005cn");
           firstAnswerSet = false;
           System.out.print("{");
           boolean firstAtom = true;
