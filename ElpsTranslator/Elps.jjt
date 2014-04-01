@@ -114,13 +114,12 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
 
   private static void printWorldViews(ArrayList<ArrayList<AnswerSet >> worldViews)  {
          for (int i = 0 ;i<worldViews.size();i++)     {
-       System.out.println("World View " +(i+1) + " out of " + worldViews.size()+":");
-       System.out.print("\n");       boolean firstAnswerSet = true;
+       System.out.println("World View " +(i+1) + " out of " + worldViews.size()+":");       boolean firstAnswerSet = true;
        int aSet = 1;
        for(AnswerSet answerSet : worldViews.get(i))       {
          // System.out.println("\n");
           if(!firstAnswerSet)
-               System.out.print("\n\n");
+               System.out.print("\n");
           firstAnswerSet = false;          System.out.print("{");
           boolean firstAtom = true;
           for(String atom : answerSet.atoms)          {
