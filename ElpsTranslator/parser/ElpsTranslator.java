@@ -85,7 +85,7 @@ public static String createOutputFile(String inputFile)
 
 public static void main(String [] args)
   {
-    System.err.println("ELPS V1.04");
+    System.err.println("ELPS V1.05");
     if(args.length<1)
     {
       System.err.println("a path to an ELPS program must be the only argument");
