@@ -85,44 +85,19 @@ public static String createOutputFile(String inputFile)
 
 public static void main(String [] args)
   {
-    System.err.println("ELPS V1.05");
-    if(args.length<1)
+    System.err.println("ELPS V1.06");
+    if(args.length!=1 && args.length !=2 || (args.length == 2 && !args[1].equals("-o")))
     {
-      System.err.println("a path to an ELPS program must be the only argument");
+      System.err.println("Invalid arguments.");
+      System.err.println("Run the program with two arguments [path-to-input-file] -o");
+      System.err.println("or with a single argument [path-to-input-file].");
       return;
     }
     String inputFile = args[0];
     String outputFile = createOutputFile(inputFile);
     Writer out = null;
       Settings.getSingletonInstance().setSolver(ASPSolver.Clingo);
- //   if (new File(outputFile).exists() && !new File(outputFile).isDirectory())
-    //  {
-   //     System.err.println("the output file already exists , do you want to overwrite it? y/n:");
-     //   char rep;
-       // try
-        //{
-         // InputStreamReader converter = new InputStreamReader(System.in);
-         // BufferedReader in = new BufferedReader(converter);
-          //rep =in.readLine().charAt(0);
-        //}
-        //catch (IOException e)
-        //{
-        //e.printStackTrace();
-         //return;
-        //}
-        //if (rep != 'y' && rep != 'Y')
-        //{
-        // return;
-        //}
-      //}
-      try
-      {
-        out = new FileWriter(outputFile);
-      }
-    catch (IOException e)
-    {
-       e.printStackTrace();
-    }
+
 
     TypeChecker tc = null;
     StringBuilder translatedProgram = new StringBuilder();
@@ -145,7 +120,8 @@ public static void main(String [] args)
       //process regular expression
       InstanceGenerator gen = new InstanceGenerator(p.sortNameToExpression);
       tc = new TypeChecker(p.sortNameToExpression, p.predicateArgumentSorts, p.constantsMapping, p.curlyBracketTerms, p.definedRecordNames, gen);
-      Translator tr = new Translator(out, p, gen, false, false);
+      Translator tr = new Translator(p, gen, false, false);
+
       // do typechecking of rules in the first file
       String fileName=getShortFileName(inputFile);
       tr.setInputFileName(fileName);
@@ -156,8 +132,22 @@ public static void main(String [] args)
         tc.checkRules((ASTprogramRules) e.jjtGetChild(2));
         translatedProgram.append(tr.translateProgram((ASTprogram) e, p.generatingSorts, true));
       }
-      tr.writeTranslatedProgram();
+
       System.err.println("program translated");
+      if(args.length == 2 )
+      {
+        try
+        {
+           out = new FileWriter(outputFile);
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+         }
+         tr.writeTranslatedProgram(out);
+         return ;
+      }
+
       AnswerSetParser aParser = new ClingoAnswerSetParser();
       ExternalSolver solver = null;
       try
@@ -4203,6 +4193,97 @@ public static void main(String [] args)
     finally { jj_save(37, xla); }
   }
 
+  private boolean jj_3_14() {
+    if (jj_3R_35()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_93()) jj_scanpos = xsp;
+    return false;
+  }
+
+  private boolean jj_3R_110() {
+    if (jj_scan_token(OP)) return true;
+    if (jj_3R_24()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_89() {
+    if (jj_3R_35()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_66() {
+    if (jj_3R_98()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_38() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_66()) {
+    jj_scanpos = xsp;
+    if (jj_3R_67()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3_29() {
+    if (jj_3R_38()) return true;
+    if (jj_3R_39()) return true;
+    if (jj_3R_40()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_34() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_14()) jj_scanpos = xsp;
+    if (jj_scan_token(OB)) return true;
+    if (jj_3R_63()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_88() {
+    if (jj_3R_40()) return true;
+    return false;
+  }
+
+  private boolean jj_3_28() {
+    if (jj_3R_38()) return true;
+    if (jj_3R_39()) return true;
+    if (jj_3R_38()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_42() {
+    if (jj_3R_35()) return true;
+    if (jj_3R_39()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_112() {
+    if (jj_scan_token(NOT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_109() {
+    if (jj_3R_120()) return true;
+    return false;
+  }
+
+  private boolean jj_3_27() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_42()) jj_scanpos = xsp;
+    if (jj_3R_43()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_49() {
+    if (jj_scan_token(CRRSEP)) return true;
+    return false;
+  }
+
   private boolean jj_3R_103() {
     Token xsp;
     xsp = jj_scanpos;
@@ -5089,97 +5170,6 @@ public static void main(String [] args)
 
   private boolean jj_3R_50() {
     if (jj_scan_token(WEAKSEP)) return true;
-    return false;
-  }
-
-  private boolean jj_3_14() {
-    if (jj_3R_35()) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_93()) jj_scanpos = xsp;
-    return false;
-  }
-
-  private boolean jj_3R_110() {
-    if (jj_scan_token(OP)) return true;
-    if (jj_3R_24()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_89() {
-    if (jj_3R_35()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_66() {
-    if (jj_3R_98()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_38() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_66()) {
-    jj_scanpos = xsp;
-    if (jj_3R_67()) return true;
-    }
-    return false;
-  }
-
-  private boolean jj_3_29() {
-    if (jj_3R_38()) return true;
-    if (jj_3R_39()) return true;
-    if (jj_3R_40()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_34() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_14()) jj_scanpos = xsp;
-    if (jj_scan_token(OB)) return true;
-    if (jj_3R_63()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_88() {
-    if (jj_3R_40()) return true;
-    return false;
-  }
-
-  private boolean jj_3_28() {
-    if (jj_3R_38()) return true;
-    if (jj_3R_39()) return true;
-    if (jj_3R_38()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_42() {
-    if (jj_3R_35()) return true;
-    if (jj_3R_39()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_112() {
-    if (jj_scan_token(NOT)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_109() {
-    if (jj_3R_120()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_49() {
-    if (jj_scan_token(CRRSEP)) return true;
-    return false;
-  }
-
-  private boolean jj_3_27() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_42()) jj_scanpos = xsp;
-    if (jj_3R_43()) return true;
     return false;
   }
 

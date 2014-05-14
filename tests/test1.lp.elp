@@ -1,0 +1,9 @@
+
+p:-not  -k_p,p.
+k1_p:-not k0_p.
+k0_p:-not k1_p.
+k0_p:-k1_0p.
+k0_p:-m1_0p.
+k0_p:-m0_p.
+-k_p:-k0_p.
+-k_p:-k1_p, not p.

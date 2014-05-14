@@ -1,0 +1,22 @@
+% s2,s1,nat
+
+p(a)|p(b).
+q(X_G):-not  m_p(X_G),s2(X_G),s1(X_G).
+r(X_G):-m_p(X_G),s2(X_G),s1(X_G).
+s2(c).
+s2(a).
+s1(b).
+s1(c).
+s1(a).
+m1_p(X_G):-not m0_p(X_G), s1(X_G).
+m0_p(X_G):-not m1_p(X_G), s1(X_G).
+m1_p(X_G):-k1_p(X_G).
+m0_p(X_G):-k1_0p(X_G).
+m_p(X_G):-m1_p(X_G).
+m_p(X_G):-m0_p(X_G), not not p(X_G).
+m1_p(X_G):-not m0_p(X_G), s1(X_G).
+m0_p(X_G):-not m1_p(X_G), s1(X_G).
+m1_p(X_G):-k1_p(X_G).
+m0_p(X_G):-k1_0p(X_G).
+m_p(X_G):-m1_p(X_G).
+m_p(X_G):-m0_p(X_G), not not p(X_G).
