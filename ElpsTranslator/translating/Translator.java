@@ -49,7 +49,7 @@ public class Translator {
 	private HashMap<String, ArrayList<String>> predicateArgumentSorts;
 	// consistency restoring rule labels
 	private HashSet<String> ruleLabels;
-	private Writer out;// output
+
 	private String inputFileName;// name of file being parsed( for error
 	// reporting)
 	private ElpsTranslator mainTranslator;
@@ -81,14 +81,13 @@ public class Translator {
 	 */
 	public Translator(
 
-			Writer out, ElpsTranslator mainTranslator, InstanceGenerator gen,
+			ElpsTranslator mainTranslator, InstanceGenerator gen,
 			boolean generateASPWarnings, boolean generateClingconWarnings) {
 
 		this.mainTranslator = mainTranslator;
 		this.sortNameToExpression = mainTranslator.sortNameToExpression;
 		this.predicateArgumentSorts = mainTranslator.predicateArgumentSorts;
 		this.ruleLabels = mainTranslator.crRuleLabels;
-		this.out = out;
 		this.gen = gen;
 		renamer = new LocalVariableRenamer();
 		this.generateASPWarnings = generateASPWarnings;
@@ -210,6 +209,26 @@ public class Translator {
 			findSubJectiveLiterals((SimpleNode)n.jjtGetChild(i), subjM, subjK);
 		}
 	}
+	
+	
+	/**
+	 * Append a string of the form % s1,...,sn, to the translation,
+	 *  where s1,...,sn are all sort names occurred in the program
+	 */
+	private void outputSortsComment() {
+		translatedOutput.append("% ");
+		boolean firstSortName = true;
+		for (String sortName: sortNameToExpression.keySet()) {
+			if(firstSortName) {
+				firstSortName = false;
+				
+			} else {
+				translatedOutput.append(",");
+			}
+			translatedOutput.append(sortName);			
+		}
+		appendNewLineToTranslation();
+	}
 	/**
 	 * Translate program given by means of Abstract syntax tree node
 	 * 
@@ -232,7 +251,7 @@ public class Translator {
 		translatedOutput = new StringBuilder();
 		localElemCount = 0;
 		labelId = 0;
-
+        outputSortsComment();
 		// extend predicate declarations
 		HashMap<String,ArrayList<String>> toBeAdded = new HashMap<String,ArrayList<String>>();
 		String newPrefixes[] = {"k_","m_","k_0","m_0","k1_0","k0_0",
@@ -488,21 +507,6 @@ public class Translator {
 		}
 	}
 
-
-
-	public String translateAndWriteRules(ASTprogramRules rules,
-			boolean writeWarningsToSTDERR) throws ParseException {
-		translatedOutput = new StringBuilder();
-
-		translateRules(rules,writeWarningsToSTDERR);
-		writeTranslatedProgram();
-		if (writeWarningsToSTDERR) {
-			for (String warning : mainTranslator.getWarnings()) {
-				System.err.println("%WARNING: " + warning);
-			}
-		}
-		return translatedOutput.toString();
-	}
 
 	/**
 	 * Add atoms to the body of the rule given by AST node
@@ -1240,7 +1244,7 @@ public class Translator {
 	/**
 	 * Write program from internal string buffer to output
 	 */
-	public void writeTranslatedProgram() {
+	public void writeTranslatedProgram(Writer out) {	
 		try {
 			if (out != null && this.translatedOutput!=null) {
 				out.write(this.translatedOutput.toString());

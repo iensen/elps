@@ -21,44 +21,19 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
 }
   public static void main(String [] args)
   {
-    System.err.println("ELPS V1.05");
-    if(args.length<1)
+    System.err.println("ELPS V1.06");
+    if(args.length!=1 && args.length !=2 || (args.length == 2 && !args[1].equals("-o")))
     {
-      System.err.println("a path to an ELPS program must be the only argument");
+      System.err.println("Invalid arguments.");
+      System.err.println("Run the program with two arguments [path-to-input-file] -o");
+      System.err.println("or with a single argument [path-to-input-file].");      
       return;
     }
     String inputFile = args[0];
     String outputFile = createOutputFile(inputFile);
     Writer out = null;
       Settings.getSingletonInstance().setSolver(ASPSolver.Clingo);
- //   if (new File(outputFile).exists() && !new File(outputFile).isDirectory())
-    //  {
-   //     System.err.println("the output file already exists , do you want to overwrite it? y/n:");
-     //   char rep;
-       // try
-        //{
-         // InputStreamReader converter = new InputStreamReader(System.in);
-         // BufferedReader in = new BufferedReader(converter);
-          //rep =in.readLine().charAt(0);
-        //}
-        //catch (IOException e)
-        //{
-        //e.printStackTrace();
-         //return;
-        //}
-        //if (rep != 'y' && rep != 'Y')
-        //{
-        // return;
-        //}
-      //}
-      try
-      {
-        out = new FileWriter(outputFile);
-      }
-    catch (IOException e)
-    {
-       e.printStackTrace();
-    }
+    
     
     TypeChecker tc = null;
     StringBuilder translatedProgram = new StringBuilder();
@@ -81,7 +56,8 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
       //process regular expression
       InstanceGenerator gen = new InstanceGenerator(p.sortNameToExpression);
       tc = new TypeChecker(p.sortNameToExpression, p.predicateArgumentSorts, p.constantsMapping, p.curlyBracketTerms, p.definedRecordNames, gen);
-      Translator tr = new Translator(out, p, gen, false, false);
+      Translator tr = new Translator(p, gen, false, false);
+      
       // do typechecking of rules in the first file
       String fileName=getShortFileName(inputFile);
       tr.setInputFileName(fileName);
@@ -92,8 +68,20 @@ options{  BUILD_PARSER = true;  STATIC = false;  OUTPUT_DIRECTORY = "/home/i
         tc.checkRules((ASTprogramRules) e.jjtGetChild(2));
         translatedProgram.append(tr.translateProgram((ASTprogram) e, p.generatingSorts, true));
       }
-      tr.writeTranslatedProgram();
+     
       System.err.println("program translated");
+      if(args.length == 2 )      {
+        try
+        {
+           out = new FileWriter(outputFile);
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+         }
+         tr.writeTranslatedProgram(out);     
+         return ;        }
+      
       AnswerSetParser aParser = new ClingoAnswerSetParser();
       ExternalSolver solver = null;
       try      {   

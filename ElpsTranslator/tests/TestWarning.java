@@ -81,7 +81,7 @@ public class TestWarning {
 			TypeChecker tc = new TypeChecker(p.sortNameToExpression,
 					p.predicateArgumentSorts, p.constantsMapping,
 					p.curlyBracketTerms, p.definedRecordNames, gen);
-			Translator tr = new Translator(null, p, gen, true, true);
+			Translator tr = new Translator( p, gen, true, true);
 			tc.checkRules((ASTprogramRules) e.jjtGetChild(2));
 			StringBuilder translatedProgram = new StringBuilder();
 			translatedProgram.append(tr.translateProgram((ASTprogram) e,
