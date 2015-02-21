@@ -85,7 +85,7 @@ public static String createOutputFile(String inputFile)
 
 public static void main(String [] args)
   {
-    System.err.println("ELPS V1.06");
+    System.err.println("ELPS V1.07");
     if(args.length!=1 && args.length !=2 || (args.length == 2 && !args[1].equals("-o")))
     {
       System.err.println("Invalid arguments.");
@@ -4193,47 +4193,6 @@ public static void main(String [] args)
     finally { jj_save(37, xla); }
   }
 
-  private boolean jj_3_14() {
-    if (jj_3R_35()) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_93()) jj_scanpos = xsp;
-    return false;
-  }
-
-  private boolean jj_3R_110() {
-    if (jj_scan_token(OP)) return true;
-    if (jj_3R_24()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_89() {
-    if (jj_3R_35()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_66() {
-    if (jj_3R_98()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_38() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_66()) {
-    jj_scanpos = xsp;
-    if (jj_3R_67()) return true;
-    }
-    return false;
-  }
-
-  private boolean jj_3_29() {
-    if (jj_3R_38()) return true;
-    if (jj_3R_39()) return true;
-    if (jj_3R_40()) return true;
-    return false;
-  }
-
   private boolean jj_3R_34() {
     Token xsp;
     xsp = jj_scanpos;
@@ -5173,9 +5132,50 @@ public static void main(String [] args)
     return false;
   }
 
+  private boolean jj_3_14() {
+    if (jj_3R_35()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_93()) jj_scanpos = xsp;
+    return false;
+  }
+
+  private boolean jj_3R_110() {
+    if (jj_scan_token(OP)) return true;
+    if (jj_3R_24()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_89() {
+    if (jj_3R_35()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_66() {
+    if (jj_3R_98()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_38() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_66()) {
+    jj_scanpos = xsp;
+    if (jj_3R_67()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3_29() {
+    if (jj_3R_38()) return true;
+    if (jj_3R_39()) return true;
+    if (jj_3R_40()) return true;
+    return false;
+  }
+
   /** Generated Token Manager. */
   public ElpsTranslatorTokenManager token_source;
-  SimpleCharStream jj_input_stream;
+  JavaCharStream jj_input_stream;
   /** Current token. */
   public Token token;
   /** Next token. */
@@ -5210,7 +5210,7 @@ public static void main(String [] args)
   }
   /** Constructor with InputStream and supplied encoding */
   public ElpsTranslator(java.io.InputStream stream, String encoding) {
-    try { jj_input_stream = new SimpleCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
+    try { jj_input_stream = new JavaCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source = new ElpsTranslatorTokenManager(jj_input_stream);
     token = new Token();
     jj_ntk = -1;
@@ -5237,7 +5237,7 @@ public static void main(String [] args)
 
   /** Constructor. */
   public ElpsTranslator(java.io.Reader stream) {
-    jj_input_stream = new SimpleCharStream(stream, 1, 1);
+    jj_input_stream = new JavaCharStream(stream, 1, 1);
     token_source = new ElpsTranslatorTokenManager(jj_input_stream);
     token = new Token();
     jj_ntk = -1;
